@@ -2,10 +2,13 @@
 
 void fileReader::ConsoleWriter::update(const Command &command)
 {
-    console << "bulk : " << command.stringCommand.at(0);
 
-    auto iterBeg = command.stringCommand.begin();
-    auto iterEnd = command.stringCommand.end();
+    auto const& vector  = command.getCommand();
+
+    console << "bulk : " << vector.at(0);
+
+    auto iterBeg = vector.begin();
+    auto iterEnd = vector.end();
 
     ++iterBeg;
 

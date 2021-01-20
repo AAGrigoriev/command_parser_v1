@@ -1,5 +1,5 @@
 #pragma once 
-#include "SimpleCommand.hpp"
+#include "simpleCommand.hpp"
 #include "forward_list"
 #include "memory"
 #include "iostream"

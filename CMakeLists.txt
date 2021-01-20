@@ -1,19 +1,25 @@
 cmake_minimum_required(VERSION 3.10)
-project(HomeWork16 VERSION 0.0.228)
+
+project(OtusCommandParser VERSION 0.0.228)
+
 set(CMAKE_CXX_STANDARD 17)
+SET(COMMAND_PATH "command")
+SET(CORE_PATH "core")
+SET(OBSERVER_PATH "Observer")
 
-add_executable(bulk)
 
-target_sources(bulk PRIVATE main.cpp console_writer.hpp console_writer.cpp file_writer.hpp file_writer.cpp Observer.hpp reader.hpp reader.cpp SimpleCommand.hpp)
+add_executable(bulk 
+main.cpp 
+${COMMAND_PATH}/simpleCommand.cpp 
+${CORE_PATH}/console_writer.cpp
+${CORE_PATH}/file_writer.cpp
+${CORE_PATH}/reader.cpp
+)
 
-install(TARGETS bulk RUNTIME DESTINATION bin)
+target_include_directories(bulk PRIVATE 
+${COMMAND_PATH}
+${CORE_PATH}
+${OBSERVER_PATH}
+)
 
-set(CPACK_GENERATOR DEB)
 
-set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
-
-set(CPACK_PACKAGE_CONTACT tori@ktori.me)
-
-include(CPack)

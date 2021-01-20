@@ -24,15 +24,9 @@ void fileReader::Reader::run()
         }
         else
         {
-            // Отлавливаю первый момент записи
-            if (command.stringCommand.empty())
-            {
-                command.unixTime = (unsigned long)time(NULL);
-            }
+            command.put_command(std::move(line));
 
-            command.stringCommand.emplace_back(std::move(line));
-
-            if (!deep && command.stringCommand.size() >= sizeBlock)
+            if (!deep && command.getCommand().size() >= sizeBlock)
                 beforeNotify();
         }
     }
@@ -50,8 +44,8 @@ void fileReader::Reader::detach(const std::shared_ptr<IObserver<Command>> &u_ptr
 
 void fileReader::Reader::beforeNotify()
 {
-    if (!command.stringCommand.empty())
+    if (!command.getCommand().size())
         notify(command);
 
-    command.stringCommand.clear();
+    command.clearCommand();
 }

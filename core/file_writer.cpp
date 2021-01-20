@@ -2,14 +2,16 @@
 
 void fileReader::FileWriter::update(const Command &command)
 {
-    std::ofstream file_writer("bulk" + std::to_string(command.unixTime) + ".log");
+    std::ofstream file_writer("bulk" + command.getTime() + ".log");
 
     if (!file_writer.is_open()) return;
     
-        file_writer << "bulk : " << command.stringCommand.at(0);
+        auto& vector_command = command.getCommand();
 
-        auto iterBeg = command.stringCommand.begin();
-        auto iterEnd = command.stringCommand.end();
+        file_writer << "bulk : " <<vector_command.at(0);
+
+        auto iterBeg = vector_command.begin();
+        auto iterEnd = vector_command.end();
         ++iterBeg;
 
         while (iterBeg != iterEnd)

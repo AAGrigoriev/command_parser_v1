@@ -1,6 +1,6 @@
 #pragma once 
 #include "Observer.hpp"
-#include "SimpleCommand.hpp"
+#include "simpleCommand.hpp"
 #include <iostream>
 #include <memory>
 
@@ -23,7 +23,7 @@ namespace fileReader
     private:
         std::istream& readStream;
         Command       command;
-        int32_t       deep; // deep dark fantasy
+        int32_t       deep; 
         std::size_t   sizeBlock;
     };
 } // namespace fileReader
