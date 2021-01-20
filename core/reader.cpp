@@ -24,6 +24,7 @@ void fileReader::Reader::run()
         }
         else
         {
+            //std::cout << line << std::endl;
             command.put_command(std::move(line));
 
             if (!deep && command.getCommand().size() >= sizeBlock)
@@ -44,7 +45,7 @@ void fileReader::Reader::detach(const std::shared_ptr<IObserver<Command>> &u_ptr
 
 void fileReader::Reader::beforeNotify()
 {
-    if (!command.getCommand().size())
+    if (command.getCommand().size() > 0)
         notify(command);
 
     command.clearCommand();

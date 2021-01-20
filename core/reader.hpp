@@ -1,5 +1,5 @@
 #pragma once 
-#include "Observer.hpp"
+#include "observer.hpp"
 #include "simpleCommand.hpp"
 #include <iostream>
 #include <memory>

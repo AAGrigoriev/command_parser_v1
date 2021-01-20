@@ -2,8 +2,7 @@
 
 void fileReader::ConsoleWriter::update(const Command &command)
 {
-
-    auto const& vector  = command.getCommand();
+    auto const &vector = command.getCommand();
 
     console << "bulk : " << vector.at(0);
 

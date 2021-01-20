@@ -5,7 +5,7 @@ project(OtusCommandParser VERSION 0.0.228)
 set(CMAKE_CXX_STANDARD 17)
 SET(COMMAND_PATH "command")
 SET(CORE_PATH "core")
-SET(OBSERVER_PATH "Observer")
+SET(OBSERVER_PATH "observer")
 
 
 add_executable(bulk 

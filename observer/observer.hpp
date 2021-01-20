@@ -1,4 +1,5 @@
 #pragma once 
+
 #include "simpleCommand.hpp"
 #include "forward_list"
 #include "memory"
@@ -24,7 +25,6 @@ namespace fileReader
         void notify(const T &data);
 
     protected:
-        /* Так как для простого обхода больше и не надо */
         std::forward_list<std::weak_ptr<IObserver<T>>> F_list;
     };
 
