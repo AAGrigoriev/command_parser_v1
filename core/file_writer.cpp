@@ -1,29 +1,25 @@
 #include "file_writer.hpp"
 
-void fileReader::FileWriter::update(const Command &command)
-{
-    std::ofstream file_writer("bulk" + command.getTime() + ".log");
+#include <fstream>
 
-    if (!file_writer.is_open()) return;
-    
-        auto& vector_command = command.getCommand();
+void Reader::FileWriter::update(const Command& command) {
+  std::ofstream file_writer("bulk" + command.getTime() + ".log");
 
-        file_writer << "bulk : " <<vector_command.at(0);
+  if (!file_writer.is_open())
+    return;
 
-        auto iterBeg = vector_command.begin();
-        auto iterEnd = vector_command.end();
-        ++iterBeg;
+  auto& vector_command = command.getCommand();
 
-        while (iterBeg != iterEnd)
-        {
-            file_writer << " ," << *iterBeg++;
-        }
-        file_writer << std::endl;
-    
-    file_writer.close();
-}
+  file_writer << "bulk : " << vector_command.at(0);
 
-std::shared_ptr<fileReader::FileWriter> fileReader::FileWriter::create()
-{
-    return std::shared_ptr<FileWriter>(new FileWriter());
+  auto iterBeg = vector_command.begin();
+  auto iterEnd = vector_command.end();
+  ++iterBeg;
+
+  while (iterBeg != iterEnd) {
+    file_writer << " ," << *iterBeg++;
+  }
+  file_writer << std::endl;
+
+  file_writer.close();
 }

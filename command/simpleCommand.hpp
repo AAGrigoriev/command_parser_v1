@@ -4,20 +4,18 @@
 #include <string>
 #include <chrono>
 
-namespace fileReader
-{
-   struct Command
-   {
-      void put_command(std::string &&command);
+namespace Reader {
+struct Command {
+   void put_command(std::string &&command);
 
-      std::string getTime() const;
+   std::string getTime() const;
 
-      void clearCommand();
+   void clearCommand();
 
-      std::vector<std::string> const &getCommand() const;
+   std::vector<std::string> const &getCommand() const;
 
-   private:
-      std::chrono::system_clock::time_point time_point;
-      std::vector<std::string> stringCommand;
-   };
+private:
+   std::chrono::system_clock::time_point time_point;
+   std::vector<std::string> stringCommand;
+};
 } // namespace fileReader

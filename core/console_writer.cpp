@@ -1,25 +1,22 @@
 #include "console_writer.hpp"
 
-void fileReader::ConsoleWriter::update(const Command &command)
-{
-    auto const &vector = command.getCommand();
+Reader::ConsoleWriter::ConsoleWriter() : console(std::cout){};
 
-    console << "bulk : " << vector.at(0);
+Reader::ConsoleWriter::ConsoleWriter(std::ostream& stream) : console(stream) {}
 
-    auto iterBeg = vector.begin();
-    auto iterEnd = vector.end();
+void Reader::ConsoleWriter::update(const Command& command) {
+  auto const& vector = command.getCommand();
 
-    ++iterBeg;
+  console << "bulk : " << vector.at(0);
 
-    while (iterBeg != iterEnd)
-    {
-        console << "," << *iterBeg++;
-    }
+  auto iterBeg = vector.begin();
+  auto iterEnd = vector.end();
 
-    console << std::endl;
-}
+  ++iterBeg;
 
-std::shared_ptr<fileReader::ConsoleWriter> fileReader::ConsoleWriter::create()
-{
-    return std::shared_ptr<ConsoleWriter>(new ConsoleWriter());
+  while (iterBeg != iterEnd) {
+    console << "," << *iterBeg++;
+  }
+
+  console << std::endl;
 }

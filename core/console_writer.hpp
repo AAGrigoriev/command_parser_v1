@@ -1,21 +1,19 @@
 #pragma once 
 
 #include "observer.hpp"
-#include <memory>
+#include "simpleCommand.hpp"
+
 #include <iostream>
 
-namespace fileReader
-{
-    class ConsoleWriter : public IObserver<Command>, public std::enable_shared_from_this<ConsoleWriter>
-    {
-    public:
-        virtual void update(const Command &command);
+namespace Reader {
+class ConsoleWriter : public IObserver<Command> {
+public:
+    ConsoleWriter();
+    ConsoleWriter(std::ostream &stream);
+    void update(const Command &command) override;
 
-        static std::shared_ptr<ConsoleWriter> create();
+private:
+    std::ostream& console;
+};
 
-    private:
-        ConsoleWriter():console(std::cout) {};
-        std::ostream& console;
-    };
-
-} // namespace fileReader
+} // namespace Reader
