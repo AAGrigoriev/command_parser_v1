@@ -31,22 +31,22 @@ ${OBSERVER_PATH}
 find_package(GTest REQUIRED)
 include(GoogleTest)
 
-add_executable(tests
+add_executable(command_test
 tests/test.cpp
 ${COMMAND_PATH}/simpleCommand.cpp
 ${CORE_PATH}/console_writer.cpp
 ${CORE_PATH}/file_writer.cpp
 ${CORE_PATH}/reader.cpp)
 
-target_include_directories(tests PRIVATE
+target_include_directories(command_test PRIVATE
 ${COMMAND_PATH}
 ${CORE_PATH}
 ${OBSERVER_PATH}
 )
 
-target_link_libraries(tests PRIVATE pthread GTest::gtest_main)
+target_link_libraries(command_test PRIVATE pthread GTest::gtest_main)
 enable_testing()
-add_test(tests tests)
+add_test(command_test command_test)
 
 
 install(TARGETS command_parser RUNTIME DESTINATION bin)
