@@ -1,13 +1,20 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(OtusCommandParser VERSION 0.0.228)
+if($ENV{GITHUB_RUN_NUMBER})
+  set(VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
+else()
+  set(VERSION 0.0.0)
+endif()
+
+
+project(command_parser VERSION ${VERSION})
 
 set(CMAKE_CXX_STANDARD 17)
 SET(COMMAND_PATH "command")
 SET(CORE_PATH "core")
 SET(OBSERVER_PATH "observer")
 
-add_executable(bulk 
+add_executable(command_parser
 main.cpp 
 ${COMMAND_PATH}/simpleCommand.cpp 
 ${CORE_PATH}/console_writer.cpp
@@ -15,7 +22,7 @@ ${CORE_PATH}/file_writer.cpp
 ${CORE_PATH}/reader.cpp
 )
 
-target_include_directories(bulk PRIVATE 
+target_include_directories(command_parser PRIVATE
 ${COMMAND_PATH}
 ${CORE_PATH}
 ${OBSERVER_PATH}
@@ -42,7 +49,7 @@ enable_testing()
 add_test(tests tests)
 
 
-install(TARGETS bulk RUNTIME DESTINATION bin)
+install(TARGETS command_parser RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
